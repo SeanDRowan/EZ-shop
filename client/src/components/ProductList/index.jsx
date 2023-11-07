@@ -20,9 +20,11 @@ function ProductList() {
         type: UPDATE_PRODUCTS,
         products: data.products,
       });
+      // but let's also take each product and save it to IndexedDB using the helper function
       data.products.forEach((product) => {
         idbPromise('products', 'put', product);
       });
+      // add else if to check if `loading` is undefined in `useQuery()` Hook
     } else if (!loading) {
       idbPromise('products', 'get').then((products) => {
         dispatch({

@@ -1,6 +1,6 @@
 import Jumbotron from "../components/Jumbotron";
 
-const NoMatch = () => {
+const Error = () => {
   return (
     <div>
       <Jumbotron>
