@@ -4,9 +4,15 @@ const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
 const resolvers = {
   Query: {
+
+    allUsers: async () => {
+      return await User.find();
+    },
+
     categories: async () => {
       return await Category.find();
     },
+
     products: async (parent, { category, name }) => {
       const params = {};
 
@@ -22,9 +28,11 @@ const resolvers = {
 
       return await Product.find(params).populate("category");
     },
+
     product: async (parent, { _id }) => {
       return await Product.findById(_id).populate("category");
     },
+
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
@@ -39,6 +47,7 @@ const resolvers = {
 
       throw AuthenticationError;
     },
+
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
@@ -51,6 +60,7 @@ const resolvers = {
 
       throw AuthenticationError;
     },
+
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
       // We map through the list of products sent by the client to extract the _id of each item and create a new Order.
@@ -84,12 +94,14 @@ const resolvers = {
     },
   },
   Mutation: {
+
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
 
       return { token, user };
     },
+
     addOrder: async (parent, { products }, context) => {
       if (context.user) {
         const order = new Order({ products });
@@ -103,58 +115,28 @@ const resolvers = {
 
       throw AuthenticationError;
     },
-    addReview: async (parent, { productId, reviewText }, context) => {
-      if (context.user) {
-        return await Product.findByIdAndUpdate(
-          { _id: productId },
-          {
-            $push: {
-              reviews: {
-                reviewText,
-                username: context.user.username,
-              },
-            },
-          },
-          { new: true, runValidators: true }
-        );
-      }
+
+    addReview: async (parent, { productId, reviewText }) => {
+      return Product.findOneAndUpdate(
+        { _id: productId },
+        {
+          $addToSet: { reviews: { reviewText } },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
     },
-    updateReview: async (
-      parent,
-      { productId, reviewId, reviewText },
-      context
-    ) => {
-      if (context.user) {
-        return await Product.findOneAndUpdate(
-          { _id: productId },
-          {
-            $set: {
-              "reviews.$[review].reviewText": reviewText,
-            },
-          },
-          {
-            arrayFilters: [{ "review._id": reviewId }],
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
+
+    removeReview: async (parent, { productId, reviewId }) => {
+      return Product.findOneAndUpdate(
+        { _id: productId },
+        { $pull: { reviews: { _id: reviewId } } },
+        { new: true }
+      )
     },
-    removeReview: async (parent, { productId, reviewId }, context) => {
-      if (context.user) {
-        return await Product.findOneAndUpdate(
-          { _id: productId },
-          {
-            $pull: {
-              reviews: {
-                _id: reviewId,
-              },
-            },
-          },
-          { new: true }
-        );
-      }
-    },
+
     updateUser: async (parent, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, {
@@ -164,6 +146,7 @@ const resolvers = {
 
       throw AuthenticationError;
     },
+
     updateProduct: async (parent, { _id, quantity }) => {
       const decrement = Math.abs(quantity) * -1;
 
@@ -173,6 +156,7 @@ const resolvers = {
         { new: true }
       );
     },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -190,7 +174,7 @@ const resolvers = {
 
       return { token, user };
     },
-  },
+  }
 };
 
 module.exports = resolvers;
