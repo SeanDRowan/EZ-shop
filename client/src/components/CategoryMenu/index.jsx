@@ -7,6 +7,10 @@ import {
 } from '../../utils/actions';
 import { QUERY_CATEGORIES } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+
 
 function CategoryMenu() {
   const [state, dispatch] = useStoreContext();
@@ -42,10 +46,18 @@ function CategoryMenu() {
   };
 
   return (
-    <div>
-      <h2>Choose a Category:</h2>
+    <div style={{background:'yellow', border:'solid',float:'left',marginLeft:-300,objectFit:'cover'}}>
+      <h2>Search for Products</h2>
+           <div> <InputGroup className="mb-3">
+        <Form.Control aria-label="Text input with dropdown button" />
+        <Button variant="outline-secondary" id="button-addon2">
+         Search
+        </Button>
+      </InputGroup>
+      </div>
+      <h2>Choose a Category</h2>
       {categories.map((item) => (
-        <button
+        <button  style={{display:'block'}}
           key={item._id}
           onClick={() => {
             handleClick(item._id);
