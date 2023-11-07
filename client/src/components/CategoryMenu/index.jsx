@@ -46,7 +46,12 @@ function CategoryMenu() {
   };
 
   return (
-    <div style={{background:'yellow', border:'solid',float:'left',marginLeft:-300,objectFit:'cover'}}>
+    <div style={{background:'yellow',
+     border:'solid',
+     float:'left',
+     borderRadius:20,
+     objectFit:'cover',
+     position: 'sticky'}}>
       <h2>Search for Products</h2>
            <div> <InputGroup className="mb-3">
         <Form.Control aria-label="Text input with dropdown button" />
