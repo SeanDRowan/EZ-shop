@@ -8,123 +8,293 @@ db.once('open', async () => {
   await cleanDB('User', 'users');
 
   const categories = await Category.insertMany([
-    { name: 'Food' },
-    { name: 'Household Supplies' },
+    { name: 'Clothing' },
+    { name: 'House Supplies' },
     { name: 'Electronics' },
-    { name: 'Books' },
-    { name: 'Toys' }
+    { name: 'Health & beauty' },
+    { name: 'Outdoor & Adventure' },
+    { name: 'Fitness' },
+    { name: 'Eco-Friendly' },
+    { name: 'Food & Beverage' },
+    { name: 'Plants & Gardening' },
+    { name: 'Offices Accessories' }
   ]);
 
   console.log('categories seeded');
 
   const products = await Product.insertMany([
     {
-      name: 'Tin of Cookies',
+      name: 'Classic Leather Jacket',
       description:
-        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'cookie-tin.jpg',
+        'A timeless black leather jacket for a sleek and stylish look.',
+      image: '',
       category: categories[0]._id,
-      price: 2.99,
-      quantity: 500
-    },
-    {
-      name: 'Canned Coffee',
-      description:
-        'Praesent sed lacinia mauris. Nulla congue nibh magna, at feugiat nunc scelerisque quis. Donec iaculis rutrum vulputate. Suspendisse lectus sem, vulputate ac lectus sed, placerat consequat dui.',
-      image: 'canned-coffee.jpg',
-      category: categories[0]._id,
-      price: 1.99,
-      quantity: 500
-    },
-    {
-      name: 'Toilet Paper',
-      category: categories[1]._id,
-      description:
-        'Donec volutpat erat erat, sit amet gravida justo sodales in. Phasellus tempus euismod urna. Proin ultrices nisi ut ipsum congue, vitae porttitor libero suscipit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam lacinia a nisi non congue.',
-      image: 'toilet-paper.jpg',
-      price: 7.99,
-      quantity: 20
-    },
-    {
-      name: 'Handmade Soap',
-      category: categories[1]._id,
-      description:
-        'Praesent placerat, odio vel euismod venenatis, lectus arcu laoreet felis, et fringilla sapien turpis vestibulum nisl.',
-      image: 'soap.jpg',
-      price: 3.99,
+      price: 199.99,
       quantity: 50
     },
     {
-      name: 'Set of Wooden Spoons',
-      category: categories[1]._id,
+      name: 'Smart Watch',
       description:
-        'Vivamus ut turpis in purus pretium mollis. Donec turpis odio, semper vel interdum ut, vulputate at ex. Duis dignissim nisi vel tortor imperdiet finibus. Aenean aliquam sagittis rutrum.',
-      image: 'wooden-spoons.jpg',
-      price: 14.99,
+        'Stay connected and monitor your health with this feature-packed smartwatch.',
+      image: '',
+      category: categories[3]._id,
+      price: 129.99,
       quantity: 100
     },
     {
-      name: 'Camera',
-      category: categories[2]._id,
-      description:
-        'Vestibulum risus metus, luctus non tortor quis, tincidunt consectetur ex. Nullam vitae lobortis ligula, ut sagittis massa. Curabitur consectetur, tellus at pulvinar venenatis, erat augue cursus erat, eu ullamcorper eros lectus ultrices ipsum. Integer rutrum, augue vitae auctor venenatis, turpis turpis elementum orci, at sagittis risus mi a leo.',
-      image: 'camera.jpg',
-      price: 399.99,
-      quantity: 30
-    },
-    {
-      name: 'Tablet',
-      category: categories[2]._id,
-      description:
-        'In sodales, ipsum quis ultricies porttitor, tellus urna aliquam arcu, eget venenatis purus ligula ut nisi. Fusce ut felis dolor. Mauris justo ante, aliquet non tempus in, tempus ac lorem. Aliquam lacinia dolor eu sem eleifend ultrices. Etiam mattis metus metus. Sed ligula dui, placerat non turpis vitae, suscipit volutpat elit. Phasellus sagittis, diam elementum suscipit fringilla, libero mauris scelerisque ex, ac interdum diam erat non sapien.',
-      image: 'tablet.jpg',
-      price: 199.99,
-      quantity: 30
-    },
-    {
-      name: 'Tales at Bedtime',
+      name: 'Vintage Polaroid Camera',
       category: categories[3]._id,
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare diam quis eleifend rutrum. Aliquam nulla est, volutpat non enim nec, pharetra gravida augue. Donec vitae dictum neque. Pellentesque arcu lorem, fringilla non ligula ac, tristique bibendum erat. Ut a semper nibh. Quisque a mi et mi tempor ultricies. Maecenas eu ipsum eu enim hendrerit accumsan at euismod urna.',
-      image: 'bedtime-book.jpg',
-      price: 9.99,
+        'Capture memories in retro style with this vintage Polaroid camera.',
+      image: '',
+      price: 79.99,
+      quantity: 30
+    },
+    {
+      name: 'Handcrafted Ceramic Mug',
+      category: categories[1]._id,
+      description:
+        'Enjoy your morning coffee in a unique, handcrafted ceramic mug.',
+      image: '',
+      price: 14.99,
+      quantity: 200
+    },
+    {
+      name: 'Bluetooth Headphones',
+      category: categories[2]._id,
+      description:
+        'Immerse yourself in music with these wireless Bluetooth headphones.',
+      image: '',
+      price: 49.99,
+      quantity: 80
+    },
+    {
+      name: 'Organic Lavender Essential Oil',
+      category: categories[3]._id,
+      description:
+        'Relax and unwind with the soothing aroma of organic lavender oil',
+      image: '',
+      price: 19.99,
+      quantity: 150
+    },
+    {
+      name: 'Gaming Laptop',
+      category: categories[2]._id,
+      description:
+        'Level up your gaming experience with a high-performance gaming laptop.',
+      image: '',
+      price: 1199.99,
+      quantity: 20
+    },
+    {
+      name: 'Eco-Friendly Bamboo Toothbrush',
+      category: categories[3]._id,
+      description:
+        'Reduce plastic waste with these eco-friendly bamboo toothbrushes.',
+      image: '',
+      price: 3.99,
+      quantity: 300
+    },
+    {
+      name: 'Fitness Resistance Bands Set',
+      category: categories[5]._id,
+      description: 
+        'Stay fit and tone your muscles with this set of resistance bands.',
+      image: '',
+      price: 24.99,
       quantity: 100
     },
     {
-      name: 'Spinning Top',
-      category: categories[4]._id,
-      description: 'Ut vulputate hendrerit nibh, a placerat elit cursus interdum.',
-      image: 'spinning-top.jpg',
-      price: 1.99,
-      quantity: 1000
+      name: 'Chefs Knife Set',
+      category: categories[1]._id,
+      description:
+        'Upgrade your kitchen with a high-quality chefs knife set.',
+      image: '',
+      price: 79.99,
+      quantity: 50
     },
     {
-      name: 'Set of Plastic Horses',
-      category: categories[4]._id,
+      name: 'Bohemian Throw Pillow Covers',
+      category: categories[1]._id,
       description:
-        'Sed a mauris condimentum, elementum enim in, rhoncus dui. Phasellus lobortis leo odio, sit amet pharetra turpis porta quis.',
-      image: 'plastic-horses.jpg',
-      price: 2.99,
-      quantity: 1000
+        'Add a touch of boho chic to your home with these throw pillow covers.',
+      image: '',
+      price: 16.99,
+      quantity: 120
     },
     {
-      name: 'Teddy Bear',
+      name: 'Yoga Mat',
+      category: categories[5]._id,
+      description:
+        'Achieve balance and flexibility with a durable and non-slip yoga mat.',
+      image: '',
+      price: 29.99,
+      quantity: 70
+    },
+    {
+      name: 'Vintage Vinyl Record Player',
+      category: categories[2]._id,
+      description:
+        'Rediscover the magic of vinyl records with this vintage record player.',
+      image: '',
+      price: 149.99,
+      quantity: 40
+    },
+    {
+      name: 'Aromatherapy Diffuser',
+      category: categories[1]._id,
+      description:
+        'Create a calming atmosphere with this essential oil aromatherapy diffuser.',
+      image: '',
+      price: 34.99,
+      quantity: 90
+    },
+    {
+      name: 'Reusable Shopping Bags',
+      category: categories[6]._id,
+      description:
+        'Reduce plastic waste with these durable and eco-friendly shopping bags.',
+      image: '',
+      price: 9.99,
+      quantity: 250
+    },
+    {
+      name: 'Leather Travel Backpack',
       category: categories[4]._id,
       description:
-        'Vestibulum et erat finibus erat suscipit vulputate sed vitae dui. Ut laoreet tellus sit amet justo bibendum ultrices. Donec vitae felis vestibulum, congue augue eu, finibus turpis.',
-      image: 'teddy-bear.jpg',
-      price: 7.99,
+        'Travel in style with this spacious and elegant leather backpack.',
+      image: '',
+      price: 89.99,
+      quantity: 60
+    },
+    {
+      name: 'Wireless Charging Pad',
+      category: categories[2]._id,
+      description:
+        'Charge your devices wirelessly with this sleek charging pad.',
+      image: '',
+      price: 19.99,
+      quantity: 120
+    },
+    {
+      name: ' Wall-Mounted Floating Shelves',
+      category: categories[1]._id,
+      description:
+        'Display your favorite items with these modern floating shelves.',
+      image: '',
+      price: 26.99,
+      quantity: 80
+    },
+    {
+      name: 'Organic Matcha Green Tea',
+      category: categories[7]._id,
+      description:
+        'Enjoy the health benefits of organic matcha green tea.',
+      image: '',
+      price: 19.99,
       quantity: 100
     },
     {
-      name: 'Alphabet Blocks',
+      name: 'Noise-Canceling Headphones',
+      category: categories[2]._id,
+      description:
+        'Block out distractions with these premium noise-canceling headphones.',
+      image: '',
+      price: 159.99,
+      quantity: 40
+    },
+    {
+      name: 'Succulent Plant Assortment',
+      category: categories[8]._id,
+      description:
+        'Add charm to your space with a variety of potted succulents.',
+      image: '',
+      price: 24.99,
+      quantity: 150
+    },
+    {
+      name: 'French Press Coffee Maker',
+      category: categories[1]._id,
+      description:
+        'Brew rich and flavorful coffee with this classic French press.',
+      image: '',
+      price: 29.99,
+      quantity: 70
+    },
+    {
+      name: 'Boho Tassel Earrings',
+      category: categories[0]._id,
+      description:
+        'Elevate your style with these trendy boho tassel earrings.',
+      image: '',
+      price: 12.99,
+      quantity: 200 
+    },
+    {
+      name: 'Portable Bluetooth Speaker',
+      category: categories[2]._id,
+      description:
+        'Take your music anywhere with this portable Bluetooth speaker.',
+      image: '',
+      price: 39.99,
+      quantity: 90
+    },
+    {
+      name: 'Bamboo Laptop Stand',
+      category: categories[9]._id,
+      description:
+        'Enhance your workspace ergonomics with this bamboo laptop stand.',
+      image: '',
+      price: 19.99,
+      quantity: 120
+    },
+    {
+      name: 'Outdoor Camping Tent',
       category: categories[4]._id,
       description:
-        'Morbi consectetur viverra urna, eu fringilla turpis faucibus sit amet. Suspendisse potenti. Donec at dui ac sapien eleifend hendrerit vel sit amet lectus.',
-      image: 'alphabet-blocks.jpg',
-      price: 9.99,
-      quantity: 600
+        'Enjoy the great outdoors with this durable and spacious camping tent.',
+      image: '',
+      price: 89.99,
+      quantity: 30
+    },
+    {
+      name: 'Portable External Battery Pack',
+      category: categories[2]._id,
+      description:
+        'Keep your devices charged on the go with this high-capacity battery pack.',
+      image: '',
+      price: 34.99,
+      quantity: 60
+    },
+    {
+      name: 'Crystal Healing Set',
+      category: categories[3]._id,
+      description:
+        'Harness the power of crystals with this curated crystal healing set.',
+      image: '',
+      price: 29.99,
+      quantity: 80
+    },
+    {
+      name: 'Vintage Map Wall Art',
+      category: categories[1]._id,
+      description:
+        'Add a touch of wanderlust to your home with vintage map wall art.',
+      image: '',
+      price: 29.99,
+      quantity: 100
+    },
+    {
+      name: 'Mini Drone with HD Camera',
+      category: categories[2]._id,
+      description:
+        'Capture breathtaking aerial shots with this mini drone.',
+      image: '',
+      price: 79.99,
+      quantity: 40
     }
+
+
   ]);
 
   console.log('products seeded');
