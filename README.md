@@ -50,4 +50,4 @@ npm run develop
 ### Questions
 
 If you have any questions feel free to contact us via email: robertcoulson91@gmail.com,
-You can also view more of our projects at https://github.com/RobertC91, https://github.com/SeanDRowan,   .
+You can also view more of our projects at https://github.com/RobertC91, https://github.com/SeanDRowan,
