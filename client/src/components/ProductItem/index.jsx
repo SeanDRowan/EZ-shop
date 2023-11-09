@@ -4,8 +4,7 @@ import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+
 function ProductItem(item) {
   const [state, dispatch] = useStoreContext();
 
@@ -53,14 +52,14 @@ function ProductItem(item) {
       <Link to={`/products/${_id}`}>
       <Card.Img style={{  borderRadius:24,}} variant="top" src={`/images/${image}`} />
       </Link>
-      <Card.Text>
+      
       <div>
         <span>{name}</span>
         <div>{quantity} {pluralize("item", quantity)} in stock</div>
         <span>${price}</span>
       </div>
       <button  onClick={addToCart}>Add to cart</button>
-      </Card.Text>
+      
     </Card>
   );
 }

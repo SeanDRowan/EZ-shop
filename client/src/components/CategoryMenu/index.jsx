@@ -9,7 +9,7 @@ import { QUERY_CATEGORIES } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
+
 
 
 function CategoryMenu() {
@@ -53,25 +53,30 @@ function CategoryMenu() {
      objectFit:'cover',
      position: 'sticky'}}>
       <h2>Search for Products</h2>
-           <div> <InputGroup className="mb-3">
+           <div> 
         <Form.Control aria-label="Text input with dropdown button" />
-        <Button variant="outline-secondary" id="button-addon2">
-         Search
+        <Button style={{background:'green',
+   
+     borderRadius:20,
+    color:'white',
+     }}>
+       Search
         </Button>
-      </InputGroup>
+      
+      
       </div>
       <h2>Choose a Category</h2>
       {categories.map((item) => (
-        <button  style={{display:'block'}}
+        <Button className='btn' style={{display:'block', margin:10,background:'grey',color:'white'}}
           key={item._id}
           onClick={() => {
             handleClick(item._id);
           }}
         >
           {item.name}
-        </button>
+        </Button>
       ))}
-      <button
+      <button style={{display:'block', margin:10, background:'grey',color:'white'}}
         onClick={() => {
           handleClick('');
         }}
