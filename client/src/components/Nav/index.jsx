@@ -4,11 +4,19 @@ import background from "/images/produce.jpg";
 
 function Nav() {
 
+  const mystyle = {
+   
+    background:'rgb(102, 255, 255)',
+    padding: "5px",
+    fontFamily: "Arial",
+    borderRadius:15,
+  }; 
+
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
         <ul className="flex-row">
-          <li className="mx-1">
+          <li style ={mystyle} >
             <Link to="/orderHistory">
               Order History
             </Link>
@@ -49,7 +57,7 @@ function Nav() {
         </Link>
       </h1>
 
-      <nav style={{ float:"right", marginRight:80, marginTop:-30 }}>
+      <nav style={{ float:"right", marginRight:80, marginTop:-50 }}>
         {showNavigation()}
       </nav>
     </header>

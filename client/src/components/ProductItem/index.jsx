@@ -42,12 +42,12 @@ function ProductItem(item) {
   return (
     
     <Card style={{ width: '15pc',
-     borderRadius:24, 
-     background :'rgba(50, 47, 47, 0.814)',
+     borderRadius:10, 
+     background :'white',
      padding:5,
      margin:10,
      boxShadow: '4px 4px 4px',
-     color:'white' }}>
+     color:'green' }}>
    
       <Link to={`/products/${_id}`}>
       <Card.Img style={{  borderRadius:24,}} variant="top" src={`/images/${image}`} />
@@ -58,7 +58,7 @@ function ProductItem(item) {
         <div>{quantity} {pluralize("item", quantity)} in stock</div>
         <span>${price}</span>
       </div>
-      <button  onClick={addToCart}>Add to cart</button>
+      <button style={{background:'rgb(153, 255, 102)',border:'solid',borderColor:'green',color:'grey'}} onClick={addToCart}>Add to cart</button>
       
     </Card>
   );
