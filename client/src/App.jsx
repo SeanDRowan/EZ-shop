@@ -6,7 +6,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import SearchBar from './components/SearchBar';
+
 import Nav from './components/Nav';
 import { StoreProvider } from './utils/GlobalState';
 
@@ -32,13 +32,13 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div>
+      
         <StoreProvider>
           <Nav />
-          <SearchBar/>
+          
           <Outlet />
         </StoreProvider>
-      </div>
+      
     </ApolloProvider>
   );
 }

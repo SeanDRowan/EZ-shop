@@ -8,8 +8,9 @@ import Auth from '../../utils/auth';
 import { useStoreContext } from '../../utils/GlobalState';
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 import './style.css';
+import {   BsCart4 } from "react-icons/bs";
 
-const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+const stripePromise = loadStripe('pk_test_51OANGUDZg62aIukaV70mM6Cr7Bb87BUSsHvc6SKgXom84Hj2wyQfoz6XvNS5JaE1wng8AehRWlci0PJ7YzArBWzN00AcFLXVAV');
 
 const Cart = () => {
   const [state, dispatch] = useStoreContext();
@@ -58,7 +59,7 @@ const Cart = () => {
     return (
       <div className="cart-closed" onClick={toggleCart}>
         <span role="img" aria-label="trash">
-          🛒
+        <BsCart4/>
         </span>
       </div>
     );
@@ -88,10 +89,8 @@ const Cart = () => {
         </div>
       ) : (
         <h3>
-          <span role="img" aria-label="shocked">
-            😱
-          </span>
-          You haven't added anything to your cart yet!
+         
+          There are no items in your cart
         </h3>
       )}
     </div>
