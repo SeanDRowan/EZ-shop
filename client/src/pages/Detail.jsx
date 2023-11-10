@@ -104,7 +104,7 @@ function Detail() {
             </button>
           </p>
 
-          <img
+          <img 
             src={`/images/${currentProduct.image}`}
             alt={currentProduct.name}
           />
