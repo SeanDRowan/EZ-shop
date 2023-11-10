@@ -6,7 +6,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
+import SearchBar from './components/SearchBar';
 import Nav from './components/Nav';
 import { StoreProvider } from './utils/GlobalState';
 
@@ -35,6 +35,7 @@ function App() {
       
         <StoreProvider>
           <Nav />
+          <SearchBar/>
           <Outlet />
         </StoreProvider>
       
