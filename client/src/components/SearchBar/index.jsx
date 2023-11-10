@@ -1,53 +1,69 @@
-import React, { useState } from 'react';
-import ProductList from '../ProductList/index.jsx';
-import Data from '../../../.././server/seeds/products.json';
-import { useStoreContext } from '../../utils/GlobalState';
+import React, { useState, useRef } from 'react';
+ import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import { gql } from '@apollo/client';  // Import gql from @apollo/client
+import { Button } from 'react-bootstrap';
 import { QUERY_PRODUCTS } from '../../utils/queries';
-import { BsSearch } from 'react-icons/bs';
-import { IconContext } from "react-icons";
-
-//searchbar connected to server database
-//how to pull products data from config/seeds.js file
-
+// Define your GraphQL query using gql
 
 const SearchBar = () => {
-    const [Search, setSearch] = useState('');
+  const [search, setSearch] = useState('');
+  const inputRef = useRef();
+  const navigate = useNavigate();
 
-    const { loading, data } = useQuery(QUERY_PRODUCTS);
-    if (loading) {
-        return <div>Loading...</div>;
-      }
-      if (!data) {
-        return <div>Nothing to see here</div>;
-      }
-      console.log(data.products);
-    
+  const { loading, data } = useQuery(QUERY_PRODUCTS);
+  console.log('Data:', data);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!data) {
+    return <div>Nothing to see here</div>;
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const inputData = inputRef.current.value;
+    console.log(inputData)
+    setSearch(inputData);
+    inputRef.current.value = '';
+  };
+
+  const navigateToProductDetail = (productId) => {
+     //Navigate to the product detail page
+    console.log('Navigating to:', productId);
+    navigate(`/products/:${productId}`);
+  };
 
   return (
     <div>
-        <h1>Search Bar</h1>
-         <IconContext.Provider value={{ color: "black", size: "1em", className: "global-class-name" }}>
-           <button> 
-            <BsSearch/> 
-           </button>
-         </IconContext.Provider>
-          <input placeholder="Enter Product Here" onChange={event => setSearch(event.target.value)} />
-           {
-               data.products.filter(products => {
-                if (Search === '') {
-                  return '';
-                } else if (products.name.toLowerCase().includes(Search.toLowerCase())) {
-                  return products;
-                }
-              }).map((products, index) => (
-                console.log(products.name),
-                <div key={index}>
-                  <p>{products.name}</p>
-                </div>
-                
-              ))
-            }
+      <form onSubmit={onSubmit}>
+        <input
+          ref={inputRef}
+          placeholder="Enter Product Here"
+          onChange={(event) => setSearch(event.target.value)}
+        />
+        <div className="d-grid gap-2">
+          <Button type="submit" variant="primary" size="lg">
+            Search
+          </Button>
+        </div>
+      </form>
+      {data.products
+        .filter((products) =>
+        console.log(products.name),
+          products.name.toLowerCase().includes(search.toLowerCase()),
+        )
+        .map((products, index) => (
+          <div
+            key={index}
+             onClick={() => navigateToProductDetail(product._id)}
+             style={{ cursor: 'pointer' }}
+          >
+            <p>{products.name}</p>
+          </div>
+        ))}
     </div>
   );
 };
