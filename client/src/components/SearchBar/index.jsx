@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import ProductList from '../ProductList/index.jsx';
-import Data from '../../../.././server/seeds/products.json';
-import { useStoreContext } from '../../utils/GlobalState';
+import Data from '../../../.././server/seeds';
+import { useStoreContext } from '/utils/GlobalState';
 import { useQuery } from '@apollo/client';
 import { QUERY_PRODUCTS } from '../../utils/queries';
 import { BsSearch } from 'react-icons/bs';
