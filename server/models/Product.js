@@ -29,10 +29,20 @@ const productSchema = new Schema({
     ref: 'Category',
     required: true
   },
-  review: {
-    type: Schema.Types.ObjectId,
-    ref: 'Review'
-  },
+  reviews: [
+    {
+      reviewText: {
+        type: String,
+        required: true,
+        minlength: 1,
+        maxlength: 280,
+      },
+      createdAt: {
+        type: Date,
+        default: Date.now,
+      },
+    }
+  ]
 });
 
 const Product = mongoose.model('Product', productSchema);

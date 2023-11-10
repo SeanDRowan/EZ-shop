@@ -3,6 +3,7 @@ import { pluralize } from "../../utils/helpers"
 import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
+import Card from 'react-bootstrap/Card';
 
 function ProductItem(item) {
   const [state, dispatch] = useStoreContext();
@@ -39,20 +40,27 @@ function ProductItem(item) {
   }
 
   return (
-    <div className="card px-1 py-1">
+    
+    <Card style={{ width: '15pc',
+     borderRadius:10, 
+     background :'white',
+     padding:5,
+     margin:10,
+     boxShadow: '4px 4px 4px',
+     color:'green' }}>
+   
       <Link to={`/products/${_id}`}>
-        <img
-          alt={name}
-          src={`/images/${image}`}
-        />
-        <p>{name}</p>
+      <Card.Img style={{  borderRadius:24,}} variant="top" src={`/images/${image}`} />
       </Link>
+      
       <div>
+        <span>{name}</span>
         <div>{quantity} {pluralize("item", quantity)} in stock</div>
         <span>${price}</span>
       </div>
-      <button onClick={addToCart}>Add to cart</button>
-    </div>
+      <button style={{background:'rgb(153, 255, 102)',border:'solid',borderColor:'green',color:'grey'}} onClick={addToCart}>Add to cart</button>
+      
+    </Card>
   );
 }
 
