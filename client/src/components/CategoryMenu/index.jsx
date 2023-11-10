@@ -1,15 +1,15 @@
-import React, { useEffect, useState, useRef} from 'react';
+import React, { useEffect, useState} from 'react';
 import { useQuery } from '@apollo/client';
 import { useStoreContext } from '../../utils/GlobalState';
 import {
   UPDATE_CATEGORIES,
   UPDATE_CURRENT_CATEGORY,
 } from '../../utils/actions';
-import { QUERY_CATEGORIES, QUERY_PRODUCTS } from '../../utils/queries';
+import { QUERY_CATEGORIES} from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import SearchBar from '../SearchBar';
+import '../CategoryMenu/style.css';
+import Button from 'react-bootstrap/Button';
 
 
 
@@ -54,17 +54,14 @@ function CategoryMenu() {
 
   return (
     <div style={{background:'rgb(153, 255, 102)',
+      width:'17pc',
      border:'solid',
      float:'left',
      borderRadius:20,
      objectFit:'cover',
-     position: 'sticky'}}>
-         <h2>Search for Products</h2>
-        <div>
-        <SearchBar/>
-        </div>
-      
-      <h2>Choose a Category</h2>
+     position: 'fixed',
+     height: '63%'}}>
+      <h2 style={{ borderRadius: '17px 17px 0 0', margin: '0', fontSize: '1.5rem', color: 'white', textAlign: 'center', borderBottom: '2px solid white', background: 'grey', paddingBottom: '8px' }}>Choose a Category</h2>
       <select
         value={selectedCategory}
         onChange={(e) => {
@@ -79,6 +76,30 @@ function CategoryMenu() {
           </option>
         ))}
       </select>
+
+      <br/>
+
+      {categories
+        .filter((item) => selectedCategory === '' || item._id === selectedCategory)
+        .map((item) => (
+          <Button
+            key={item._id}
+            style={{
+              display: 'block',
+              margin: 10,
+              background: 'white',
+              border: 'solid',
+              borderColor: 'green',
+              color: 'green',
+            }}
+            onClick={() => {
+              handleClick(item._id);
+            }}
+          >
+            {item.name}
+          </Button>
+        ))}
+    
     </div>
   );
 }

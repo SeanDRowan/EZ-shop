@@ -48,7 +48,7 @@ function Nav() {
   }
 
   return (
-    <header style={{ height: 130,  backgroundImage: `url(${background})`}}>
+    <header style={{ height: 140, backgroundImage: `url(${background})`}}>
       <h1>
         <Link to="/">
           <span role="img" aria-label="shopping bag"><img className ="Me" src="images/groceries.png" width="80" height="90" alt="Me" />

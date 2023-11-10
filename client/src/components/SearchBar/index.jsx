@@ -1,13 +1,8 @@
 import React, { useState, useRef } from 'react';
-// import { useStoreContext } from '../../utils/GlobalState';
 import { useQuery } from '@apollo/client';
 import { QUERY_PRODUCTS } from '../../utils/queries';
-// import { BsSearch } from 'react-icons/bs';
-// import { IconContext } from "react-icons";
 import { Button } from 'react-bootstrap';
-import Detail from '../../pages/Detail';
-//searchbar connected to server database
-//how to pull products data from config/seeds.js file
+
 
 const SearchBar = () => {
     const [Search, setSearch] = useState('');
@@ -21,17 +16,27 @@ const SearchBar = () => {
       if (!data) {
         return <div>Nothing to see here</div>;
       }
-     
     
+      const onSelect = (selectedProduct) => {
+        console.log('Selected Product:', selectedProduct);
+      };
+           
+      
     const onSubmit = (e) => {
         e.preventDefault();
-
         const inputData = inputRef.current.value;
         console.log(inputData);
-    
-        
         inputRef.current.value = '';
-    }
+
+        const matchingProduct = data.products.find(
+          (product) =>
+            product.name.toLowerCase().includes(Search.toLowerCase())
+        );
+        if (matchingProduct) {
+          onSelect(matchingProduct);
+        }
+      };
+    
 
   return (
     <div>
@@ -53,7 +58,6 @@ const SearchBar = () => {
               }).map((products, index) => (
                 console.log(products.name),
                 <div key={index}>
-                    
                   <p>{products.name}</p>
                 </div>
                 
