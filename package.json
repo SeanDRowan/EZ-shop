@@ -17,12 +17,8 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "bootstrap-react": "^0.5.0-alpha.14"
-=======
     "@cloudinary/react": "^1.11.2",
     "@cloudinary/url-gen": "^1.12.1",
     "dotenv": "^16.3.1"
->>>>>>> b79a2093786eaf2089fa5042199cdd3c8baf86d7
   }
 }
