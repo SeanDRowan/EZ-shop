@@ -5,7 +5,7 @@ import './index.css';
 import App from './App.jsx';
 import Home from './pages/Home';
 import Detail from './pages/Detail';
-import Error from './pages/ErrorPage';
+import Error from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Success from './pages/Success';
