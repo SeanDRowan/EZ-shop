@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-
+import  CommentForm  from '../components/comments';
 import Cart from '../components/Cart';
 import { useStoreContext } from '../utils/GlobalState';
 import {
@@ -107,7 +107,7 @@ function Detail() {
           <img
             src={`/images/${currentProduct.image}`}
             alt={currentProduct.name}
-          />
+          />  <CommentForm/>
         </div>
       ) : null}
       {loading ? <img src={spinner} alt="loading" /> : null}

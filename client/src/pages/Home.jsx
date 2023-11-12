@@ -5,7 +5,9 @@ import Cart from "../components/Cart";
 const Home = () => {
   return (
     <div>
-    <CategoryMenu />
+      <div style = {{marginLeft:5, }}>
+    <CategoryMenu  />
+    </div>
     <div className="container">
    
      
