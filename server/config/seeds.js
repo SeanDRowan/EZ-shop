@@ -7,6 +7,7 @@ db.once('open', async () => {
   await cleanDB('Product', 'products');
   await cleanDB('User', 'users');
 
+  // Seed data for categories to be used in the application
   const categories = await Category.insertMany([
     { name: 'Clothing' },
     { name: 'House Supplies' },
@@ -22,6 +23,7 @@ db.once('open', async () => {
 
   console.log('categories seeded');
 
+  // Seed data for products to be used in the application
   const products = await Product.insertMany([
     {
       name: 'Classic Leather Jacket',
@@ -297,6 +299,7 @@ db.once('open', async () => {
 
   console.log('products seeded');
 
+  // Seed data for users to be used in the application
   await User.create({
     firstName: 'Pamela',
     lastName: 'Washington',

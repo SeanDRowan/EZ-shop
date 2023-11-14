@@ -1,9 +1,13 @@
 const { User, Product, Category, Order } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
+
+// import the dotenv package and the .env file
 require ("dotenv").config();
+// access stripe using the secret key
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const resolvers = {
+  // Queries for allUsers, categories, products, product, user, order, and checkout
   Query: {
 
     allUsers: async () => {
@@ -26,7 +30,7 @@ const resolvers = {
           $regex: name,
         };
       }
-
+      // populate() method to populate the category field with the associated category data instead of just an _id
       return await Product.find(params).populate("category");
     },
 
@@ -36,11 +40,12 @@ const resolvers = {
 
     user: async (parent, args, context) => {
       if (context.user) {
+        // find a user and populate their orders
         const user = await User.findById(context.user._id).populate({
           path: "orders.products",
           populate: "category",
         });
-
+        // sort the orders in descending order by the purchaseDate value
         user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
 
         return user;
@@ -67,7 +72,7 @@ const resolvers = {
       // We map through the list of products sent by the client to extract the _id of each item and create a new Order.
       await Order.create({ products: args.products.map(({ _id }) => _id) });
       const line_items = [];
-
+      // We loop through the products array and push each item into the line_items array.
       for (const product of args.products) {
         line_items.push({
           price_data: {
@@ -83,6 +88,7 @@ const resolvers = {
         });
       }
 
+      // We then create a new Stripe checkout session using the line_items array.
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
         line_items,
@@ -95,7 +101,7 @@ const resolvers = {
     },
   },
   Mutation: {
-
+    // Mutations for addUser, addOrder, addReview, removeReview, updateUser, updateProduct, and login
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
