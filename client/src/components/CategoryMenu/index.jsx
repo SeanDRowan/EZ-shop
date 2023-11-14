@@ -53,11 +53,10 @@ function CategoryMenu() {
   };
 
   return (
-
     <div
   style={{
     background: 'rgb(153, 255, 102)',
-    leftMargin: '10px',
+    marginLeft: '10px',
     width: '10pc',
     border: 'solid',
     float: 'left',
@@ -111,7 +110,32 @@ function CategoryMenu() {
           {item.name}
         </Button>
       ))}
-  
+
+        <Button
+          style={{
+          display: 'block',
+          margin: 10,
+          background: 'white',
+          border: 'solid',
+          borderColor: 'green',
+          color: 'green',
+         }}
+          onClick={() => {
+            handleClick('');
+         }}
+        >
+          All Products
+        </Button>
+        <style>
+         {`
+          @media (max-width: 768px) {
+          width: 100%;
+          height: auto;
+          position: relative;
+          float: none;
+         }
+        `}
+        </style>
   </div>
 );
 }
