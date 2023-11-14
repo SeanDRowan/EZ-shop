@@ -88,29 +88,7 @@ function CategoryMenu() {
     })
   };
   return (
-<<<<<<< HEAD
-    <div
-  style={{
-    background: 'rgb(153, 255, 102)',
-    marginLeft: '10px',
-    width: '10pc',
-    border: 'solid',
-    float: 'left',
-    borderRadius: 20,
-    objectFit: 'cover',
-    position: 'fixed',
-    height: `${categories
-      .filter(
-        (item) =>
-          selectedCategory === '' || item._id === selectedCategory
-      )
-      .length * 70}px`,
-  }}
-=======
-    
-
     <div style={category.container(matches)}
->>>>>>> 0dc2cf6687b9ae60cec76e78bb87ee9a92b527e4
 >
     <h2 style={{ borderRadius: '17px 17px 17px 17px',
      margin: '0', 
