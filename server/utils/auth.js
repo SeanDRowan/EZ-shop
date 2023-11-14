@@ -14,7 +14,6 @@ module.exports = {
     // allows token to be sent via req.body, req.query, or headers
     let token = req.body.token || req.query.token || req.headers.authorization;
 
-    // ["Bearer", "<tokenvalue>"]
     if (req.headers.authorization) {
       token = token.split(' ').pop().trim();
     }
@@ -24,6 +23,7 @@ module.exports = {
     }
 
     try {
+      // decode and attach user data to request object
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
     } catch {
@@ -32,6 +32,7 @@ module.exports = {
 
     return req;
   },
+  // signToken function accepts a user object and returns a token
   signToken: function ({ firstName, email, _id }) {
     const payload = { firstName, email, _id };
 

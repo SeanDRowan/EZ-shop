@@ -105,12 +105,9 @@ function Detail() {
             </button>
           </p>
 
+
           <img
-
           className="bounce-in-from-outside"
-       
-
-
             src={`/images/${currentProduct.image}`}
             alt={currentProduct.name}
           />  <CommentForm/>
