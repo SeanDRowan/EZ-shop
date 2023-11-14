@@ -9,7 +9,7 @@ import Error from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Success from './pages/Success';
-
+import OrderHistory from './pages/OrderHistory.jsx';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -31,6 +31,9 @@ const router = createBrowserRouter([
       }, {
         path: '/success',
         element: <Success />
+      },{
+        path: '/orderHistory',
+        element: <OrderHistory />
       },
     ],
   },

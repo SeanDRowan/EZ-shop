@@ -39,13 +39,13 @@ db.once('open', async () => {
       description:
         'Stay connected and monitor your health with this feature-packed smartwatch.',
       image: 'smartWatch.png',
-      category: categories[3]._id,
+      category: categories[2]._id,
       price: 129.99,
       quantity: 100
     },
     {
       name: 'Vintage Polaroid Camera',
-      category: categories[3]._id,
+      category: categories[2]._id,
       description:
         'Capture memories in retro style with this vintage Polaroid camera.',
       image: 'polaroidCamera.png',
