@@ -1,6 +1,7 @@
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import background from "/images/produce.jpg";
+import CategoryMenu from "../CategoryMenu";
 
 function Nav() {
 
@@ -50,8 +51,10 @@ function Nav() {
   }
 
   return (
-    <header style={{ height: 130,  backgroundImage: `url(${background})`,}}>
-      <h1 style ={{margin:0}}>
+
+    <header style={{ height: 140, backgroundImage: `url(${background})`}}>
+      <h1>
+
         <Link to="/">
           <span role="img" aria-label="shopping bag"><img src="images/groceries.png" width="80" height="90" alt="Me" />
 </span>
@@ -63,6 +66,7 @@ function Nav() {
         {showNavigation()}
       </nav>
     </header>
+    
   );
 }
 

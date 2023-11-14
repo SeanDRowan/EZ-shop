@@ -13,6 +13,7 @@ import {
 import { QUERY_PRODUCTS } from '../utils/queries';
 import { idbPromise } from '../utils/helpers';
 import spinner from '../assets/spinner.gif';
+import '../../../client/src/index.css';
 
 function Detail() {
   const [state, dispatch] = useStoreContext();
@@ -105,9 +106,15 @@ function Detail() {
           </p>
 
           <img
+
+          className="bounce-in-from-outside"
+       
+
+
             src={`/images/${currentProduct.image}`}
             alt={currentProduct.name}
           />  <CommentForm/>
+
         </div>
       ) : null}
       {loading ? <img src={spinner} alt="loading" /> : null}
