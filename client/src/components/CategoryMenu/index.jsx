@@ -88,8 +88,6 @@ function CategoryMenu() {
     })
   };
   return (
-    
-
     <div style={category.container(matches)}
 >
     <h2 style={{ borderRadius: '17px 17px 17px 17px',
@@ -131,7 +129,32 @@ function CategoryMenu() {
           {item.name}
         </Button>
       ))}
-  
+
+        <Button
+          style={{
+          display: 'block',
+          margin: 10,
+          background: 'white',
+          border: 'solid',
+          borderColor: 'green',
+          color: 'green',
+         }}
+          onClick={() => {
+            handleClick('');
+         }}
+        >
+          All Products
+        </Button>
+        <style>
+         {`
+          @media (max-width: 768px) {
+          width: 100%;
+          height: auto;
+          position: relative;
+          float: none;
+         }
+        `}
+        </style>
   </div>
 );
 }
