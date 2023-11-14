@@ -199,6 +199,29 @@ input:focus {
   text-align: center;
 }
 
+@keyframes bounceInFromOutside {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  60% {
+    opacity: 0.8;
+    transform: translateY(30%);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-15%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bounce-in-from-outside {
+  animation: bounceInFromOutside 1.5s ease-out;
+}
+
 .error-text {
   color: var(--error);
 }

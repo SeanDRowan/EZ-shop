@@ -8,7 +8,7 @@ import Auth from '../../utils/auth';
 import { useStoreContext } from '../../utils/GlobalState';
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 import './style.css';
-import {   BsCart4 } from "react-icons/bs";
+import { BsCart4 } from "react-icons/bs";
 
 const stripePromise = loadStripe('pk_test_51OANGUDZg62aIukaV70mM6Cr7Bb87BUSsHvc6SKgXom84Hj2wyQfoz6XvNS5JaE1wng8AehRWlci0PJ7YzArBWzN00AcFLXVAV');
 
@@ -57,7 +57,7 @@ const Cart = () => {
 
   if (!state.cartOpen) {
     return (
-      <div className="cart-closed" onClick={toggleCart}>
+      <div className="cart-closed"  onClick={toggleCart}>
         <span role="img" aria-label="trash">
         <BsCart4/>
         </span>
@@ -66,11 +66,12 @@ const Cart = () => {
   }
 
   return (
-    <div className="cart">
-      <div className="close" onClick={toggleCart}>
-        [close]
+    <div className="cart" style={{borderRadius:24}}>
+      <div  style ={{width:40, marginRight:20}}className="close" onClick={toggleCart}>
+      <img src="https://www.downloadclipart.net/large/43431-close-button-clipart.png" height={40}/>
+  
       </div>
-      <h2>Shopping Cart</h2>
+      <h2>Your Shopping Cart</h2>
       {state.cart.length ? (
         <div>
           {state.cart.map((item) => (
@@ -81,7 +82,13 @@ const Cart = () => {
             <strong>Total: ${calculateTotal()}</strong>
 
             {Auth.loggedIn() ? (
-              <button onClick={submitCheckout}>Checkout</button>
+              <button style={{  background:'rgb(0, 153, 51)',
+              padding: "5px",
+              fontFamily: "Arial",
+              border:'solid',
+              borderColor:'rgb(0, 102, 0)',
+              color:'white',
+              borderRadius:15,}} onClick={submitCheckout}>Checkout</button>
             ) : (
               <span>(log in to check out)</span>
             )}

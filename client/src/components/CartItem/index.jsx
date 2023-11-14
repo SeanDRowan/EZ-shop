@@ -53,12 +53,12 @@ const CartItem = ({ item }) => {
             value={item.purchaseQuantity}
             onChange={onChange}
           />
-          <span
+          <span style={{ width:20}}
             role="img"
             aria-label="trash"
             onClick={() => removeFromCart(item)}
           >
-            🗑️
+            <img  style={{ width:50, marginBottom:-10}} src="https://cdn3.iconfinder.com/data/icons/shopping-cart-19/200/452-512.png"/>
           </span>
         </div>
       </div>

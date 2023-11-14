@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-
+import  CommentForm  from '../components/comments';
 import Cart from '../components/Cart';
 import { useStoreContext } from '../utils/GlobalState';
 import {
@@ -13,6 +13,7 @@ import {
 import { QUERY_PRODUCTS } from '../utils/queries';
 import { idbPromise } from '../utils/helpers';
 import spinner from '../assets/spinner.gif';
+import '../../../client/src/index.css';
 
 function Detail() {
   const [state, dispatch] = useStoreContext();
@@ -104,10 +105,13 @@ function Detail() {
             </button>
           </p>
 
+
           <img
+          className="bounce-in-from-outside"
             src={`/images/${currentProduct.image}`}
             alt={currentProduct.name}
-          />
+          />  <CommentForm/>
+
         </div>
       ) : null}
       {loading ? <img src={spinner} alt="loading" /> : null}

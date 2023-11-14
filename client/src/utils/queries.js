@@ -68,4 +68,20 @@ export const QUERY_USER = gql`
       }
     }
   }
-`;
+`
+
+export const QUERY_SINGLE_PRODUCT = gql`
+  query getProduct($id: ID!) {
+    product(_id: $id) {
+      _id
+      name
+      description
+      price
+      quantity
+      image
+      category {
+        _id
+        name
+      }
+    }
+  }`;
