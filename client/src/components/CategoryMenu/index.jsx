@@ -53,6 +53,7 @@ function CategoryMenu() {
   };
 
   return (
+
     <div
   style={{
     background: 'rgb(153, 255, 102)',
@@ -80,6 +81,7 @@ function CategoryMenu() {
       style={{ margin: 1 }}
     >
       <option value="">All</option>
+
       {categories.map((item) => (
         <option key={item._id} value={item._id}>
           {item.name}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-
+import  CommentForm  from '../components/comments';
 import Cart from '../components/Cart';
 import { useStoreContext } from '../utils/GlobalState';
 import {
@@ -106,10 +106,14 @@ function Detail() {
           </p>
 
           <img
+
           className="bounce-in-from-outside"
-          src={`/images/${currentProduct.image}`}
-          alt={currentProduct.name}
-          />
+       
+
+
+            src={`/images/${currentProduct.image}`}
+            alt={currentProduct.name}
+          />  <CommentForm/>
 
         </div>
       ) : null}
