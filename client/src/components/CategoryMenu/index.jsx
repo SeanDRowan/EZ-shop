@@ -17,12 +17,17 @@ function CategoryMenu() {
   const [state, dispatch] = useStoreContext();
 
   const [selectedCategory, setSelectedCategory] = useState('');
-
+  const mediaMatch = window.matchMedia('(min-width: 1505px)');
+  const [matches, setMatches] = useState(mediaMatch.matches);
 
   const { categories } = state;
 
   const { loading: loadingCategories, data: categoryData } = useQuery(QUERY_CATEGORIES);
-    
+  useEffect(() => {
+    const handler = e => setMatches(e.matches);
+    mediaMatch.addListener(handler);
+    return () => mediaMatch.removeListener(handler);
+  });
 
   useEffect(() => {
     if (categoryData) {
@@ -51,8 +56,39 @@ function CategoryMenu() {
 
     setSelectedCategory(id);
   };
+  
+  const button = {
+    container: small => ({
+      display: small ?'block' : 'none',
+      margin: 10,
+      width:140,
+      background: 'white',
+      border: 'solid',
+      borderColor: 'green',
+      color: 'green',
+    })}
 
+  const category = {
+    container: small => ({
+      justifyContent: 'space-around',
+      background: 'rgb(0, 102, 0)',
+      leftMargin: '10px',
+      width: '10pc',
+      border: 'solid',
+      float: small ? 'left': 'right',
+      borderRadius: 20,
+      objectFit: 'cover',
+      position: small ?  'fixed': 'relative',
+      height: small ? `${categories
+        .filter(
+          (item) =>
+            selectedCategory === '' || item._id === selectedCategory
+        )
+        .length * 70}px` : 100,
+    })
+  };
   return (
+<<<<<<< HEAD
     <div
   style={{
     background: 'rgb(153, 255, 102)',
@@ -70,8 +106,20 @@ function CategoryMenu() {
       )
       .length * 70}px`,
   }}
+=======
+    
+
+    <div style={category.container(matches)}
+>>>>>>> 0dc2cf6687b9ae60cec76e78bb87ee9a92b527e4
 >
-    <h2 style={{ borderRadius: '17px 17px 17px 17px', margin: '0', fontSize: '1.5rem', color: 'white', textAlign: 'center', borderBottom: '2px solid white', background: 'grey', paddingBottom: '8px' }}>Choose a Category</h2>
+    <h2 style={{ borderRadius: '17px 17px 17px 17px',
+     margin: '0', 
+     fontSize: '1.5rem',
+      color: 'white',
+       textAlign: 'center',
+       marginBottom: 7,
+         background: 'rgb(0, 51, 102)',
+          }}>Choose a Category</h2>
     <select
       value={selectedCategory}
       onChange={(e) => {
@@ -95,14 +143,7 @@ function CategoryMenu() {
       .map((item) => (
         <Button
           key={item._id}
-          style={{
-            display: 'block',
-            margin: 10,
-            background: 'white',
-            border: 'solid',
-            borderColor: 'green',
-            color: 'green',
-          }}
+          style={button.container(matches)}
           onClick={() => {
             handleClick(item._id);
           }}
@@ -139,5 +180,9 @@ function CategoryMenu() {
   </div>
 );
 }
+
+
+
+
 
 export default CategoryMenu;
