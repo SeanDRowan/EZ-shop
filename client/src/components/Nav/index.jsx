@@ -1,6 +1,7 @@
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import background from "/images/produce.jpg";
+import CategoryMenu from "../CategoryMenu";
 
 function Nav() {
 
@@ -61,6 +62,7 @@ function Nav() {
         {showNavigation()}
       </nav>
     </header>
+    
   );
 }
 

@@ -7,6 +7,7 @@ import { QUERY_PRODUCTS } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 import spinner from '../../assets/spinner.gif';
 import '../ProductList/style.css';
+import {BsFillArrowRightSquareFill} from 'react-icons/bs';
 
 function ProductList() {
   const [state, dispatch] = useStoreContext();
@@ -50,8 +51,8 @@ function ProductList() {
   };
 
   return (
-    <div className="my-2">
-    <div style={{ marginBottom: '20px' }}>
+    <div className="my-2" style={{paddingLeft: '20px'}}>
+    <div style={{ marginBottom: '20px'}}>
       <h2 style={{ fontSize: '2rem', fontWeight: 'bold', textAlign: 'center' }}>Search for Products</h2>
       <input
         type="text"
@@ -65,7 +66,7 @@ function ProductList() {
           border: '1px solid #ccc',
         }}
       />
-    </div>
+    </div>  
     <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '15px' }}>Our Products:</h2>
     {filterProducts().length ? (
       <div className="flex-row">
