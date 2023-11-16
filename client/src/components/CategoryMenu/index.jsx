@@ -28,7 +28,7 @@ function CategoryMenu() {
     mediaMatch.addListener(handler);
     return () => mediaMatch.removeListener(handler);
   });
-
+// get products for user chosen categories. 
   useEffect(() => {
     if (categoryData) {
       dispatch({
@@ -47,7 +47,7 @@ function CategoryMenu() {
       });
     }
   }, [categoryData, loadingCategories, dispatch]);
-
+// click handeler for category buttons
   const handleClick = (id) => {
     dispatch({
       type: UPDATE_CURRENT_CATEGORY,
@@ -56,7 +56,7 @@ function CategoryMenu() {
 
     setSelectedCategory(id);
   };
-  
+  // button and category styling with media selectors
   const button = {
     container: small => ({
       display: small ?'block' : 'none',

@@ -14,7 +14,7 @@ const CartItem = ({ item }) => {
     idbPromise('cart', 'delete', { ...item });
 
   };
-
+// edit number of items in cart
   const onChange = (e) => {
     const value = e.target.value;
     if (value === '0') {

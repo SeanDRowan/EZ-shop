@@ -15,7 +15,7 @@ const stripePromise = loadStripe('pk_test_51OANGUDZg62aIukaV70mM6Cr7Bb87BUSsHvc6
 const Cart = () => {
   const [state, dispatch] = useStoreContext();
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
-
+// submit order info to stripe and redirect user to checkout.
   useEffect(() => {
     if (data) {
       stripePromise.then((res) => {
@@ -23,7 +23,7 @@ const Cart = () => {
       });
     }
   }, [data]);
-
+// gets products placed in cart to desplay in cart component
   useEffect(() => {
     async function getCart() {
       const cart = await idbPromise('cart', 'get');
@@ -38,7 +38,7 @@ const Cart = () => {
   function toggleCart() {
     dispatch({ type: TOGGLE_CART });
   }
-
+// add the price of each cart item and display the total
   function calculateTotal() {
     let sum = 0;
     state.cart.forEach((item) => {
@@ -54,7 +54,7 @@ const Cart = () => {
       },
     });
   }
-
+// display icon if cart is not open
   if (!state.cartOpen) {
     return (
       <div className="cart-closed"  onClick={toggleCart}>
@@ -64,7 +64,7 @@ const Cart = () => {
       </div>
     );
   }
-
+// if cart is open display cart +items
   return (
     <div className="cart" style={{borderRadius:24}}>
       <div  style ={{width:40, marginRight:20}}className="close" onClick={toggleCart}>

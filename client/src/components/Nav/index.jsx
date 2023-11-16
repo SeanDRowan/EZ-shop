@@ -13,8 +13,9 @@ function Nav() {
     borderRadius:15,
     margin:20
   }; 
-
+// if loggen in show signin/signup. else show order history/ logout
   function showNavigation() {
+
     if (Auth.loggedIn()) {
       return (
         <ul className="flex-row" style={{listStyle:'none'}}>
@@ -25,7 +26,7 @@ function Nav() {
           </li> 
         
           <li style ={mystyle}>
-            {/* this is not using the Link component to logout or user and then refresh the application to the start */}
+            
             <a href="/" onClick={() => Auth.logout()}>
               Logout
             </a>
